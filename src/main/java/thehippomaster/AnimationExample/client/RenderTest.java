@@ -18,5 +18,5 @@ public class RenderTest extends RenderLiving {
 		return texture;
 	}
 	
-	private static final ResourceLocation texture = new ResourceLocation("none");
+	private static final ResourceLocation texture = new ResourceLocation("iat:textures/blocks/time_Rift.png");
 }
