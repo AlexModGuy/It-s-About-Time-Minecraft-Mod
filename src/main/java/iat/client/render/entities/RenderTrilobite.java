@@ -49,6 +49,7 @@ public class RenderTrilobite
 	protected void preRenderCallback(EntityLivingBase par1EntityLivingBase, float par2) {
 	GL11.glScalef(0.6f, 0.6f, 0.6f);
 	GL11.glRotatef(180, 0, 1, 0);//commando made the model backwards :)
+	super.preRenderCallback(par1EntityLivingBase, par2);
 	}
 
 	

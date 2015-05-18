@@ -1,4 +1,5 @@
 package iat.misc;
+import iat.core.ModBlocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
@@ -17,15 +18,10 @@ public class CreativeTabsIat extends CreativeTabs
 	}
 	@Override
 	public ItemStack getIconItemStack(){
-		return new ItemStack(Items.apple);
+		return new ItemStack(ModBlocks.timeRift_nowhere);
 	}
 	@Override
 	public Item getTabIconItem() {
 		return null;
 	}
-	/*@SideOnly(Side.CLIENT)
-	public String getBackgroundImageName()
-	{
-		return "TargaryenDragons.png";
-	}*/
 }

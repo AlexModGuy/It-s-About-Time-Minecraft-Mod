@@ -17,7 +17,7 @@ public class WorldProviderCretaceous extends WorldProvider{
 		this.worldChunkMgr = new WorldChunkManagerCretaceous(worldObj.getSeed(), terrainType);
 		this.dimensionId = ModDimensions.Dim_cretaceous;
 	}
-	public IChunkProvider createChunkProvider(){//true or false
+	public IChunkProvider createChunkProvider(){
 		return new ChunkProviderCretaceous(this.worldObj, this.worldObj.getSeed(), false);
 	}
 	@Override

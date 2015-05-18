@@ -4,7 +4,10 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -20,16 +23,24 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 
 
-public abstract class EntityIatMob extends EntityAgeable implements IAnimals{
+public abstract class EntityIatMob extends EntityTameable implements IAnimals{
 
 	private int inLove;
 	private int breeding;
 	private EntityPlayer theBreeder;
 	public int frame;
+	public float minSize;
+	public float maxSize;
+	public int adultAge;
+	public int maxAge;
+
 	public EntityIatMob(World world)
 	{
 		super(world);
 		this.experienceValue = 5;
+		this.dataWatcher.addObject(27, Byte.valueOf((byte)0));
+		this.dataWatcher.addObject(30, Byte.valueOf((byte)0));
+
 	}
 	/**
 	 * The item that is used to breed the mob(ex. Wheat for Sheep, carrots for pigs, etc.)
@@ -40,19 +51,14 @@ public abstract class EntityIatMob extends EntityAgeable implements IAnimals{
 		return stack.getItem() == Items.wheat;
 	}
 	/**
-	 * if the mob can despawn.
-	 */
-	protected boolean canDespawn()
-	{
-		return false;
-	}
-	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
 	public void writeEntityToNBT(NBTTagCompound tag)
 	{
 		super.writeEntityToNBT(tag);
 		tag.setInteger("InLove", this.inLove);
+		tag.setInteger("Gender", getGender());
+		tag.setInteger("AnimalAge", getAnimalAge());
 	}
 
 	/**
@@ -62,6 +68,69 @@ public abstract class EntityIatMob extends EntityAgeable implements IAnimals{
 	{
 		super.readEntityFromNBT(tag);
 		this.inLove = tag.getInteger("InLove");
+		setGender(tag.getInteger("Gender"));
+		setAnimalAge(tag.getInteger("AnimalAge"));
+	}
+	/**returns and integer for the mobs gender. 0 = female, 1 = male*/
+	public int getGender()
+	{
+		return this.dataWatcher.getWatchableObjectByte(27);
+	}
+
+	/**returns and integer for the mobs gender. 0 = female, 1 = male*/
+	public void setGender(int i)
+	{
+		this.dataWatcher.updateObject(27, Byte.valueOf((byte)i));
+	}
+	/**returns and integer for the mobs age.*/
+	public int getAnimalAge()
+	{
+		return this.dataWatcher.getWatchableObjectByte(30);
+	}
+	/**returns and integer for the mobs age.*/
+	public void setAnimalAge(int i)
+	{
+		this.dataWatcher.updateObject(30, Byte.valueOf((byte)i));
+	}
+	public boolean increaseAnimalAge() {
+		if (getAnimalAge() < maxAge) {
+			setAnimalAge(getAnimalAge() + 1);
+			return true;
+		}
+
+		return false;
+	}
+	public float getAnimalSize() {
+		float step;
+		step = (maxSize - minSize) / (adultAge + 1);
+
+		if (getAnimalAge() > adultAge) {
+			return minSize + (step * adultAge);
+		}
+
+		return minSize + (step * getAnimalAge());
+	}
+	public boolean isChild() {
+		return  getAnimalAge() < adultAge;
+	}
+	@Override
+	public void setScaleForAge(boolean par1) {
+		this.setScale(getAnimalSize());
+	}
+	@Override
+	public IEntityLivingData onSpawnWithEgg(IEntityLivingData par1EntityLivingData) {
+		this.onSpawn();
+		return par1EntityLivingData;
+	}
+	public void onSpawn(){
+		this.setAnimalAge(adultAge);
+		if(hasGenders()){
+			this.setGender(this.getRNG().nextInt(2));
+		}
+	}
+	public boolean hasGenders()
+	{
+		return false;
 	}
 	/**
 	 * when the player clicks on the mob.
@@ -72,6 +141,19 @@ public abstract class EntityIatMob extends EntityAgeable implements IAnimals{
 
 		if (itemstack != null && this.isBreedingItem(itemstack) && this.getGrowingAge() == 0 && this.inLove <= 0)
 		{
+			this.destroyItemIfPossible(player);
+			this.onPlayerBreed(player);
+			return true;
+		}
+		else
+		{
+			return super.interact(player);
+		}
+	}
+	/**Destroys the item if possible(if the player is not in creative, or if the itemstack is not null).*/
+	public void destroyItemIfPossible(EntityPlayer player) {
+		ItemStack itemstack = player.inventory.getCurrentItem();
+		if(itemstack != null){
 			if (!player.capabilities.isCreativeMode)
 			{
 				--itemstack.stackSize;
@@ -81,14 +163,9 @@ public abstract class EntityIatMob extends EntityAgeable implements IAnimals{
 					player.inventory.setInventorySlotContents(player.inventory.currentItem, (ItemStack)null);
 				}
 			}
+		}
 
-			this.onPlayerBreed(player);
-			return true;
-		}
-		else
-		{
-			return super.interact(player);
-		}
+
 	}
 	protected void updateAITick()
 	{
@@ -168,8 +245,15 @@ public abstract class EntityIatMob extends EntityAgeable implements IAnimals{
 	/**
 	 * Returns true if the mob is currently able to mate with the specified mob.
 	 */
-	public boolean canMateWith(EntityIatMob mob)
+	public boolean canMateWith(EntityAnimal mob)
 	{
+		if(hasGenders()){
+			if( this.getGender() == 0 && ((EntityIatMob) mob).getGender() == 1){
+            	return true;
+            }if(this.getGender() == 1 && ((EntityIatMob) mob).getGender() == 0){
+            	return true;
+            }	
+		}
 		return mob == this ? false : (mob.getClass() != this.getClass() ? false : this.isInLove() && mob.isInLove());
 	}
 
@@ -244,7 +328,6 @@ public abstract class EntityIatMob extends EntityAgeable implements IAnimals{
 	{
 		frame++;
 		super.onUpdate();
-
 	}
 
 	protected String getSwimSound()

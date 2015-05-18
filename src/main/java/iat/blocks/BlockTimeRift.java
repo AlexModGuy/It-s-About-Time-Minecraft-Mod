@@ -122,12 +122,12 @@ public class BlockTimeRift extends BlockContainer {
 			else if (thePlayer.dimension != dimensionID)
 			{
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, dimensionID, new IatTeleporter(thePlayer.mcServer.worldServerForDimension(dimensionID), dimensionID, 0));
+				thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, dimensionID, new IatTeleporter(thePlayer.mcServer.worldServerForDimension(dimensionID)));
 			}
 			else
 			{
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, 0, new IatTeleporter(thePlayer.mcServer.worldServerForDimension(0), 0, dimensionID));
+				thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, 0, new IatTeleporter(thePlayer.mcServer.worldServerForDimension(0)));
 			}
 		}
 	}

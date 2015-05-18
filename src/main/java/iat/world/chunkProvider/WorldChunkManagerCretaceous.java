@@ -1,10 +1,12 @@
 package iat.world.chunkProvider;
 
+import iat.core.ModBiomes;
 import iat.world.layer.GenLayerCretaceous;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 
 
 
@@ -40,7 +42,7 @@ public class WorldChunkManagerCretaceous extends WorldChunkManager{
 	{
 		this.biomeCache = new BiomeCache(this);
 		this.biomesToSpawnIn = new ArrayList<BiomeGenBase>();
-		this.biomesToSpawnIn.add(BiomeGenBase.swampland);
+		this.biomesToSpawnIn.add(ModBiomes.biomeCretaceousDry);
 		
 	}public WorldChunkManagerCretaceous(long seed, WorldType worldtype)
 	{

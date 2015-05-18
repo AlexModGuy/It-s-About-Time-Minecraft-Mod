@@ -2,17 +2,22 @@ package iat.core;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import iat.ItsAboutTime;
+import iat.blocks.BlockAmber;
+import iat.blocks.BlockBasic;
 import iat.blocks.BlockCleaningTable;
 import iat.blocks.BlockFossil;
 import iat.blocks.BlockGrid;
 import iat.blocks.BlockHorseTail;
 import iat.blocks.BlockMatterConverter;
+import iat.blocks.BlockMud;
 import iat.blocks.BlockPlaster;
 import iat.blocks.BlockPlasterFossil;
 import iat.blocks.BlockPlasterWall;
 import iat.blocks.BlockLowFern;
 import iat.blocks.BlockPrehistoricWood_1;
+import iat.blocks.BlockTimeFluid;
 import iat.blocks.BlockTimeRift;
+import iat.blocks.fluid.FluidTime;
 import iat.entities.tile.TileEntityCleaningTable;
 import iat.entities.tile.TileEntityMatterConverter;
 import iat.entities.tile.TileEntityTimeRift;
@@ -32,8 +37,12 @@ import iat.items.blocks.ItemRiftCreatorBlock;
 import iat.items.blocks.ItemSilurianBlock;
 import iat.items.blocks.ItemTriassicBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialLiquid;
 import net.minecraft.init.Blocks;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 
 public class ModBlocks {
 
@@ -48,6 +57,9 @@ public class ModBlocks {
 	public static Block fossil_Ore_Cretaceous;
 	public static Block fossil_Ore_Paleogene;
 	public static Block fossil_Ore_Neogene;
+	public static Block amber_Silverfish;
+	public static Block amber_Spider;
+	public static Block amber_Compsognathus;
 	public static Block plastered_Fossil_Cambrian;
 	public static Block plastered_Fossil_Ordovician;
 	public static Block plastered_Fossil_Silurian;
@@ -68,28 +80,32 @@ public class ModBlocks {
 	public static Block timeRift_nowhere;
 	public static Block timeRift_cambrian;
 	public static Block timeRift_cretaceous;
+	public static Block mud;
+	public static Block dried_Mud;
 	public static Block low_Fern_Block;
 	public static Block horsetail;
 	public static Block pre_Log_1;
-
 	public static Block grid;
+	public static Block fluidTimeBlock;
+	public static Fluid fluidTime;
+	public static Material materialFluidTime;
 
 	public static void init() {
 		initializeBlocks();
 		register();
 	}
 	public static void initializeBlocks(){
-		plastered_Fossil_Cambrian = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F).setStepSound(Block.soundTypeGravel);
-		plastered_Fossil_Ordovician = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F).setStepSound(Block.soundTypeGravel);
-		plastered_Fossil_Silurian = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F).setStepSound(Block.soundTypeGravel);
-		plastered_Fossil_Devonian = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F).setStepSound(Block.soundTypeGravel);
-		plastered_Fossil_Carboniferous = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F).setStepSound(Block.soundTypeGravel);
-		plastered_Fossil_Permian = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F).setStepSound(Block.soundTypeGravel);
-		plastered_Fossil_Triassic = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F).setStepSound(Block.soundTypeGravel);
-		plastered_Fossil_Jurassic = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F).setStepSound(Block.soundTypeGravel);
-		plastered_Fossil_Cretaceous = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F).setStepSound(Block.soundTypeGravel);
-		plastered_Fossil_Paleogene = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F).setStepSound(Block.soundTypeGravel);
-		plastered_Fossil_Neogene = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F).setStepSound(Block.soundTypeGravel);
+		plastered_Fossil_Cambrian = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F);
+		plastered_Fossil_Ordovician = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F);
+		plastered_Fossil_Silurian = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F);
+		plastered_Fossil_Devonian = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F);
+		plastered_Fossil_Carboniferous = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F);
+		plastered_Fossil_Permian = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F);
+		plastered_Fossil_Triassic = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F);
+		plastered_Fossil_Jurassic = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F);
+		plastered_Fossil_Cretaceous = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F);
+		plastered_Fossil_Paleogene = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F);
+		plastered_Fossil_Neogene = new BlockPlasterFossil(Material.clay).setBlockTextureName("iat:plaster_Fossil").setBlockName("iat.fossil_Plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(15F);
 		fossil_Ore_Cambrian = new BlockFossil(Material.rock, plastered_Fossil_Cambrian).setBlockTextureName("iat:fossil_Ore").setBlockName("iat.fossil").setCreativeTab(ItsAboutTime.iatTab).setHardness(3F).setResistance(15F);
 		fossil_Ore_Ordovician = new BlockFossil(Material.rock, plastered_Fossil_Ordovician).setBlockTextureName("iat:fossil_Ore").setBlockName("iat.fossil").setCreativeTab(ItsAboutTime.iatTab).setHardness(3F).setResistance(15F);
 		fossil_Ore_Silurian = new BlockFossil(Material.rock, plastered_Fossil_Silurian).setBlockTextureName("iat:fossil_Ore").setBlockName("iat.fossil").setCreativeTab(ItsAboutTime.iatTab).setHardness(3F).setResistance(15F);
@@ -101,6 +117,9 @@ public class ModBlocks {
 		fossil_Ore_Cretaceous = new BlockFossil(Material.rock, plastered_Fossil_Cretaceous).setBlockTextureName("iat:fossil_Ore").setBlockName("iat.fossil").setCreativeTab(ItsAboutTime.iatTab).setHardness(3F).setResistance(15F);
 		fossil_Ore_Paleogene = new BlockFossil(Material.rock, plastered_Fossil_Paleogene).setBlockTextureName("iat:fossil_Ore").setBlockName("iat.fossil").setCreativeTab(ItsAboutTime.iatTab).setHardness(3F).setResistance(15F);
 		fossil_Ore_Neogene = new BlockFossil(Material.rock, plastered_Fossil_Neogene).setBlockTextureName("iat:fossil_Ore").setBlockName("iat.fossil").setCreativeTab(ItsAboutTime.iatTab).setHardness(3F).setResistance(15F);
+		amber_Silverfish = new BlockAmber(Material.rock, 0).setBlockTextureName("iat:amber").setBlockName("iat.amber").setHardness(3F).setResistance(5F).setStepSound(Block.soundTypeGlass);
+		amber_Spider = new BlockAmber(Material.rock, 1).setBlockTextureName("iat:amber").setBlockName("iat.amber").setHardness(3F).setResistance(5F).setStepSound(Block.soundTypeGlass);
+		amber_Compsognathus = new BlockAmber(Material.rock, 2).setBlockTextureName("iat:amber").setBlockName("iat.amber").setHardness(3F).setResistance(5F).setStepSound(Block.soundTypeGlass);
 		cleaning_Table_Off = new BlockCleaningTable(Material.wood, false).setBlockTextureName("log_oak_top").setBlockName("iat.cleaning_Table").setCreativeTab(ItsAboutTime.iatTab).setHardness(2F).setResistance(5F).setStepSound(Block.soundTypeWood);
 		cleaning_Table_On = new BlockCleaningTable(Material.wood, true).setBlockTextureName("log_oak_top").setBlockName("iat.cleaning_Table").setHardness(2F).setResistance(5F).setStepSound(Block.soundTypeWood);
 		plaster = new BlockPlaster(Material.clay).setBlockTextureName("iat:plaster_Block").setBlockName("iat.plaster").setCreativeTab(ItsAboutTime.iatTab).setHardness(0.7F).setResistance(15F).setStepSound(Block.soundTypeGravel);
@@ -109,10 +128,16 @@ public class ModBlocks {
 		Matter_converter_off = new BlockMatterConverter(Material.iron, false).setBlockName("iat.matter_converter").setHardness(5F).setResistance(15F).setCreativeTab(ItsAboutTime.iatTab).setStepSound(Block.soundTypeMetal);
 		timeRift_nowhere = new BlockTimeRift(Material.portal, ModDimensions.Dim_nowhere).setBlockName("iat.timeRift").setHardness(2F).setResistance(1000F).setLightLevel(0.5F).setCreativeTab(ItsAboutTime.iatTab);
 		timeRift_cretaceous = new BlockTimeRift(Material.portal, ModDimensions.Dim_cretaceous).setBlockName("iat.timeRift").setHardness(2F).setResistance(1000F).setLightLevel(0.5F).setCreativeTab(ItsAboutTime.iatTab);
-		low_Fern_Block = new BlockLowFern().setBlockName("iat.low_Fern").setBlockTextureName("iat:low_Fern").setCreativeTab(ItsAboutTime.iatTab).setHardness(0.6F);
+		mud = new BlockMud(Material.ground, "spade", 1, 0.8F, 1F).setBlockName("iat.mud").setBlockTextureName("iat:mud").setStepSound(Block.soundTypeGravel).setCreativeTab(ItsAboutTime.iatTab);
+		dried_Mud = new BlockBasic(Material.ground, "pickaxe", 1, 0.5F, 3.5F).setBlockName("iat.dried_Mud").setBlockTextureName("iat:dried_Mud").setCreativeTab(ItsAboutTime.iatTab);
+		low_Fern_Block = new BlockLowFern().setBlockName("iat.low_Fern").setBlockTextureName("iat:low_Fern").setCreativeTab(ItsAboutTime.iatTab).setHardness(0.6F).setStepSound(Block.soundTypeGrass);
 		horsetail = new BlockHorseTail(Material.plants).setBlockName("iat.horsetail").setBlockTextureName("iat:horsetail").setCreativeTab(ItsAboutTime.iatTab).setHardness(0.3F).setStepSound(Block.soundTypeGrass);
 		//pre_Log_1 = new BlockPrehistoricWood_1().setBlockName("iat.log").setBlockTextureName("iat:log").setCreativeTab(ItsAboutTime.iatTab).setHardness(0.3F).setStepSound(Block.soundTypeGrass);
 		grid = new BlockGrid(Material.rock).setBlockUnbreakable().setBlockTextureName("iat:grid").setBlockName("iat.grid").setCreativeTab(ItsAboutTime.iatTab);
+		fluidTime = new FluidTime("fluidTime").setBlock(fluidTimeBlock).setUnlocalizedName("fluidTime");
+		FluidRegistry.registerFluid(fluidTime);
+		materialFluidTime = new MaterialLiquid(MapColor.limeColor);
+		fluidTimeBlock=new BlockTimeFluid(fluidTime, materialFluidTime).setBlockName("iat.fluid_Time");
 	}
 	public static void register(){
 		GameRegistry.registerBlock(fossil_Ore_Cambrian, ItemCambrianBlock.class, "fossil_Ore_Cambrian");
@@ -126,6 +151,9 @@ public class ModBlocks {
 		GameRegistry.registerBlock(fossil_Ore_Cretaceous, ItemCretaceousBlock.class, "fossil_Ore_Cretaceous");
 		GameRegistry.registerBlock(fossil_Ore_Paleogene, ItemPaleogeneBlock.class, "fossil_Ore_Paleogene");
 		GameRegistry.registerBlock(fossil_Ore_Neogene, ItemNeogeneBlock.class, "fossil_Ore_Neogene");
+		GameRegistry.registerBlock(amber_Silverfish, "amber_Silverfish");
+		GameRegistry.registerBlock(amber_Spider, "amber_Spider");
+		GameRegistry.registerBlock(amber_Compsognathus, "amber_Compsognathus");
 		GameRegistry.registerBlock(plastered_Fossil_Cambrian, ItemCambrianBlock.class, "plastered_Fossil_Cambrian");
 		GameRegistry.registerBlock(plastered_Fossil_Ordovician, ItemOrdovicianBlock.class, "plastered_Fossil_Ordovician");
 		GameRegistry.registerBlock(plastered_Fossil_Silurian, ItemSilurianBlock.class, "plastered_Fossil_Silurian");
@@ -147,9 +175,12 @@ public class ModBlocks {
 		GameRegistry.registerBlock(timeRift_cretaceous, ItemCretaceousBlock.class, "timeRift_cretaceous");
 		
 		GameRegistry.registerBlock(low_Fern_Block, "low_Fern_Block");
-		GameRegistry.registerBlock(horsetail, "horsetail");
+		GameRegistry.registerBlock(mud, "mud");
+		GameRegistry.registerBlock(dried_Mud, "dried_Mud");
 
+		GameRegistry.registerBlock(horsetail, "horsetail");
 		GameRegistry.registerBlock(grid, "grid");
+		GameRegistry.registerBlock(fluidTimeBlock, "fluidTimeBlock");
 		
 		GameRegistry.registerTileEntity(TileEntityTimeRift.class, "TileEntityTimeRift");
 		GameRegistry.registerTileEntity(TileEntityMatterConverter.class, "TileEntityMatterConverter");

@@ -22,8 +22,7 @@ public class ModRecipes {
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.time_Sword, 1, 0), new Object[] {"X", "X", "Y", Character.valueOf('X'), ModItems.time_Crystal, Character.valueOf('Y'), "stickWood"}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.time_Hoe, 1, 0), new Object[] {"XX ", " Y ", " Y ", Character.valueOf('X'), ModItems.time_Crystal, Character.valueOf('Y'), "stickWood"}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.Matter_converter_off, 1, 0), new Object[] {"XYX", "ZUZ", "XVX", Character.valueOf('X'), "ingotIron", Character.valueOf('Y'), Blocks.hopper, Character.valueOf('Z'), Items.bucket, Character.valueOf('U'), "blockRedstone", Character.valueOf('V'), "gemDiamond"}));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.cleaning_Table_Off, 1, 0), new Object[] {"X  ", "ZYZ", "WZW", Character.valueOf('X'), Items.iron_pickaxe, Character.valueOf('Y'), Items.bucket, Character.valueOf('Z'), "plankWood", Character.valueOf('W'), "logWood"}));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.cleaning_Table_Off, 1, 0), new Object[] {"  X", "ZYZ", "WZW", Character.valueOf('X'), Items.iron_pickaxe, Character.valueOf('Y'), Items.bucket, Character.valueOf('Z'), "plankWood", Character.valueOf('W'), "logWood"}));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.cleaning_Table_Off, 1, 0), new Object[] {"X X", "ZYZ", "ZXZ", Character.valueOf('X'), "plankWood", Character.valueOf('Y'), Items.water_bucket, Character.valueOf('Z'), "stickWood"}));
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.plaster, 2, 0), new Object[] {"XX", "XX", Character.valueOf('X'), ModItems.plaster_Ball});
 		GameRegistry.addRecipe(new ItemStack(ModBlocks.plaster_Wall, 6, 0), new Object[] {"XXX", "XXX", Character.valueOf('X'), ModBlocks.plaster});
 

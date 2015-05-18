@@ -25,9 +25,12 @@ public class ContainerCleaningTable extends Container
     public ContainerCleaningTable(InventoryPlayer player, TileEntityCleaningTable tileEntity)
     {
         this.tileFurnace = tileEntity;
-        this.addSlotToContainer(new Slot(tileEntity, 0, 56, 17));
-        this.addSlotToContainer(new Slot(tileEntity, 1, 56, 53));
-        this.addSlotToContainer(new SlotFurnace(player.player, tileEntity, 2, 116, 35));
+        this.addSlotToContainer(new Slot(tileEntity, 1, 56, 34));
+        this.addSlotToContainer(new SlotFurnace(player.player, tileEntity, 2, 107, 25));
+        this.addSlotToContainer(new SlotFurnace(player.player, tileEntity, 3, 125, 25));
+        this.addSlotToContainer(new SlotFurnace(player.player, tileEntity, 4, 107, 43));
+        this.addSlotToContainer(new SlotFurnace(player.player, tileEntity, 5, 125, 43));
+
         int i;
 
         for (i = 0; i < 3; ++i)
@@ -130,7 +133,7 @@ public class ContainerCleaningTable extends Container
 
                 slot.onSlotChange(itemstack1, itemstack);
             }
-            else if (i != 1 && i != 0)
+            else if (i != 1)
             {
                 if (CleaningTableRecipes.smelting().getSmeltingResult(itemstack1) != null)
                 {

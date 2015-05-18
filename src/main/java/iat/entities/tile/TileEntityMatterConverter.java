@@ -197,7 +197,7 @@ public class TileEntityMatterConverter extends TileEntity implements ISidedInven
 	@SideOnly(Side.CLIENT)
 	public int getCookProgressScaled(int i)
 	{
-		return this.furnaceCookTime * i / 200;
+		return this.furnaceCookTime * i / 1000;
 	}
 
 	/**
@@ -209,7 +209,7 @@ public class TileEntityMatterConverter extends TileEntity implements ISidedInven
 	{
 		if (this.currentItemBurnTime == 0)
 		{
-			this.currentItemBurnTime = 200;
+			this.currentItemBurnTime = 1000;
 		}
 
 		return this.furnaceBurnTime * time / this.currentItemBurnTime;
@@ -235,7 +235,7 @@ public class TileEntityMatterConverter extends TileEntity implements ISidedInven
 
 		if (!this.worldObj.isRemote)
 		{
-			if (this.furnaceBurnTime != 0 || this.furnaceItemStacks[1] != null && this.furnaceItemStacks[0] != null)
+			if (this.furnaceBurnTime != 0 || this.furnaceItemStacks[0] != null)
 			{
 				if (this.furnaceBurnTime == 0 && this.canSmelt())
 				{
@@ -244,16 +244,7 @@ public class TileEntityMatterConverter extends TileEntity implements ISidedInven
 					if (this.furnaceBurnTime > 0)
 					{
 						flag1 = true;
-
-						if (this.furnaceItemStacks[1] != null)
-						{
-							--this.furnaceItemStacks[1].stackSize;
-
-							if (this.furnaceItemStacks[1].stackSize == 0)
-							{
-								this.furnaceItemStacks[1] = furnaceItemStacks[1].getItem().getContainerItem(furnaceItemStacks[1]);
-							}
-						}
+						
 					}
 				}
 
@@ -261,7 +252,7 @@ public class TileEntityMatterConverter extends TileEntity implements ISidedInven
 				{
 					++this.furnaceCookTime;
 
-					if (this.furnaceCookTime == 200)
+					if (this.furnaceCookTime == 1000)
 					{
 						this.furnaceCookTime = 0;
 						this.smeltItem();
@@ -340,25 +331,7 @@ public class TileEntityMatterConverter extends TileEntity implements ISidedInven
 	  */
 	 public static int getItemBurnTime(ItemStack stack)
 	 {
-		 if (stack == null)
-		 {
-			 return 0;
-		 }
-		 else
-		 {
-			 Item item = stack.getItem();
-
-			 if (item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.air)
-			 {
-				 Block block = Block.getBlockFromItem(item);
-				 return 100;   
-			 }
-			 else if(stack.getItem() != null){
-				 return 100;
-			 }
-
-			 return GameRegistry.getFuelValue(stack);
-		 }
+			 return 1000;
 	 }
 
 	 public static boolean isItemFuel(ItemStack fuel)

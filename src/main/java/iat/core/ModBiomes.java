@@ -1,12 +1,17 @@
 package iat.core;
 
+import iat.ConfigOptions;
 import iat.world.biomes.BiomeNowhere;
+import iat.world.biomes.BiomeBasic;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.biome.BiomeGenBase;
 
 public class ModBiomes {
 	
 public static BiomeGenBase biomeNowhere;
 
+public static BiomeGenBase biomeCretaceousDry;
 public static BiomeGenBase biomeCretaceousSwamp;
 public static BiomeGenBase biomeCretaceousPlains;
 public static BiomeGenBase biomeCretaceousOakForest;
@@ -32,7 +37,8 @@ public static BiomeGenBase biomeCretaceousSea;
 		register();
 	}
 	public static void initializeBiomes(){
-		biomeNowhere = new BiomeNowhere(57).setColor(0X0A0026).setTemperatureRainfall(0F, 0F);
+		biomeNowhere = new BiomeBasic(ConfigOptions.biomeIDNowhere, ModBlocks.grid, Blocks.sandstone, true, 0).setBiomeName(StatCollector.translateToLocal("biome.iat.nowhere")).setColor(0X0A0026).setTemperatureRainfall(0F, 0F);
+		biomeCretaceousDry = new BiomeBasic(ConfigOptions.biomeIDNowhere, ModBlocks.dried_Mud, Blocks.sandstone, true, 0).setBiomeName(StatCollector.translateToLocal("biome.iat.biomeCretaceousDry")).setColor(0XE7DBAF).setTemperatureRainfall(1.6F, 0F);
 	}
 	public static void register(){
 

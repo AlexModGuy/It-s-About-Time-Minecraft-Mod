@@ -22,7 +22,7 @@ public class WorldProviderNowhere extends WorldProvider{
 		this.dimensionId = ModDimensions.Dim_nowhere;
 	}
 	public IChunkProvider createChunkProvider(){//true or false
-		return new ChunkProviderNowhere(this.worldObj, this.worldObj.getSeed(), false);
+		return new ChunkProviderNowhere(this.worldObj, this.worldObj.getSeed(), true);
 	}
 	@Override
 	public String getDimensionName() {
@@ -38,7 +38,7 @@ public class WorldProviderNowhere extends WorldProvider{
 	}
 	public String getWelcomeMessage()
 	{
-		return "Your Going Nowhere";
+		return "You Are Going Nowhere";
 	}
 	public IChunkProvider createChunkGenerator()
 	{

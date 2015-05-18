@@ -73,7 +73,7 @@ public class BlockFossil extends Block{
 	}
 	public Item getItemDropped(int i, Random rand, int u)
 	{
-		return Item.getItemFromBlock(this);
+		return ModItems.fossil_Shard;
 	}
 
 	@Override

@@ -5,36 +5,52 @@ import org.lwjgl.util.glu.Cylinder;
 import org.lwjgl.util.glu.GLU;
 import org.lwjgl.util.glu.Sphere;
 
+import iat.client.models.armor.ModelPheromoneArmor;
 import iat.client.render.blocks.*;
 import iat.client.render.entities.*;
 import iat.client.render.items.*;
+import iat.client.render.items.ItemRendererFossil;
 import iat.core.ModBlocks;
 import iat.entities.mob.*;
 import iat.entities.tile.*;
+import iat.enums.EnumFossilSkeleton;
 import cpw.mods.fml.client.registry.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 public class ProxyClient extends ProxyCommon {
-	
+
 	public static int sphereId;
 	public static int secondSphereId;
 	public static int cylinderId;
 	public static int secondcylinderId;
+	private static final ModelPheromoneArmor pheromoneChest = new ModelPheromoneArmor(1.0f);
+	private static final ModelPheromoneArmor pheromoneLegs = new ModelPheromoneArmor(1.0f);
+
 	@Override
 	public void registerRenderStuff(){
+//		
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityTrilobite.class, new RenderTrilobite());
 		RenderingRegistry.registerEntityRenderingHandler(EntityCompsognathus.class, new RenderCompsognathus());
-
+		RenderingRegistry.registerEntityRenderingHandler(EntityCarnotaurus.class, new RenderCarnotaurus());
+		RenderingRegistry.registerEntityRenderingHandler(EntityVelociraptor.class, new RenderVelociraptor());
+		for (int i = 0; i < EnumFossilSkeleton.values().length; i++) {
+			MinecraftForgeClient.registerItemRenderer(EnumFossilSkeleton.values()[i].fossilItem, (IItemRenderer)new ItemRendererFossil(EnumFossilSkeleton.values()[i].model, EnumFossilSkeleton.values()[i].name, false));
+			MinecraftForgeClient.registerItemRenderer(EnumFossilSkeleton.values()[i].fossilBrokenItem, (IItemRenderer)new ItemRendererFossil(EnumFossilSkeleton.values()[i].model, EnumFossilSkeleton.values()[i].name, true));
+		}
 		TileEntitySpecialRenderer render = new RenderTimeRift();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTimeRift.class, render);
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.timeRift_nowhere),new ItemRenderTimeRift(render, new TileEntityTimeRift()));
-		
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.timeRift_cretaceous),new ItemRenderTimeRift(render, new TileEntityTimeRift()));
+
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAmber.class, new RenderAmber());
+
 		TileEntitySpecialRenderer render1 = new RenderCleaningTable();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCleaningTable.class, render1);
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.cleaning_Table_Off),new ItemRenderCleaningTable(render1, new TileEntityCleaningTable()));
@@ -43,7 +59,15 @@ public class ProxyClient extends ProxyCommon {
 
 	public ModelBiped getArmorModel(int id){
 
-		return null; 
+		switch (id) { 
+		case 0:
+			return pheromoneChest; 
+		case 1:
+			return pheromoneLegs;
+		default:
+			break;
+		}
+		return pheromoneChest;
 	} 
 
 	public  void drawCircle(ResourceLocation texture) {
@@ -65,7 +89,7 @@ public class ProxyClient extends ProxyCommon {
 		sphere.draw(0.49F, 32, 32);
 		GL11.glEndList();	
 	}
-	
+
 	public void drawCylinder(ResourceLocation texture) {
 		Cylinder cylinder = new Cylinder();
 		cylinder.setDrawStyle(GLU.GLU_FILL);

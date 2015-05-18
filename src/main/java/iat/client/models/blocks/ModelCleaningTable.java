@@ -132,7 +132,7 @@ public class ModelCleaningTable extends ModelBase
 		setRotation(Wood, 0F, 0F, 0F);
 	}
 
-	public void render(float f5, boolean isRenderingWater)
+	public void render(float f5)
 	{
 		RightBackLeg.render(f5);
 		RightFrontLeg.render(f5);
@@ -148,12 +148,11 @@ public class ModelCleaningTable extends ModelBase
 		BucketLeft.render(f5);
 		BucketRight.render(f5);
 		Wood.render(f5);
-		if(isRenderingWater){
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-			Water.render(f5);
-			GL11.glDisable(GL11.GL_BLEND);
-		}
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		Water.render(f5);
+		GL11.glDisable(GL11.GL_BLEND);
+
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z)

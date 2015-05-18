@@ -8,7 +8,7 @@ import net.minecraft.world.gen.layer.IntCache;
 
 public class GenLayerBiomesCretaceous extends GenLayer {
 
-	protected BiomeGenBase[] allowedBiomes = {BiomeGenBase.swampland};
+	protected BiomeGenBase[] allowedBiomes = {ModBiomes.biomeCretaceousDry};
 	public GenLayerBiomesCretaceous(long seed, GenLayer genlayer) {
 		super(seed);
 		this.parent = genlayer;

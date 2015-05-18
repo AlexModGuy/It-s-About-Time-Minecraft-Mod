@@ -1,7 +1,10 @@
 package iat.client.render.items;
 
+import iat.client.render.blocks.RenderTimeRift;
+
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -13,7 +16,6 @@ public class ItemRenderTimeRift implements IItemRenderer {
 	public ItemRenderTimeRift(TileEntitySpecialRenderer render, TileEntity entity) {
 		this.entity = entity;
 		this.render = render;
-		System.out.println("Item Render Class called");
 	}
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type) {
@@ -27,11 +29,12 @@ public class ItemRenderTimeRift implements IItemRenderer {
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
 		if(type == IItemRenderer.ItemRenderType.ENTITY){
 			GL11.glTranslatef(-0.5F, 0.0F, -0.5F);
-
 		}
-		System.out.println("Item Rendered");
-
-		this.render.renderTileEntityAt(this.entity, 0.0D, 0.0D, 0.0D, 0.0F);
+		float rot = 0;
+		rot = FMLClientHandler.instance().getClient().theWorld.getWorldTime() % 360L;
+		GL11.glPushMatrix();
+		((RenderTimeRift) this.render).renderItemAt(this.entity, 0.0D, 0.0D, 0.0D, 0.0F, rot);
+		GL11.glPopMatrix();
 
 	}
 }

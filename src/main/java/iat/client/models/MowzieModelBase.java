@@ -1,5 +1,7 @@
 package iat.client.models;
 
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBase;
@@ -68,7 +70,9 @@ extends ModelBase
 			boxes[i].rotateAngleY += MathHelper.cos(frame * speed + offset * i) * degree;
 		}
 	}
-
+	public void renderFossil(float f5){
+		GL11.glDisable(GL11.GL_CULL_FACE);
+	}
 	public void chainWave(MowzieModelRenderer[] boxes, float speed, float degree, double rootOffset, float f, float f1)
 	{
 		int numberOfSegments = boxes.length;

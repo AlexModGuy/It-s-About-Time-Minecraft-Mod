@@ -9,12 +9,17 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import iat.entities.EntityIatMob;
+import iat.entities.mob.classification.IWaterPrehistoricSmall;
 
 public class EntityTrilobite extends EntityIatMob implements IWaterPrehistoricSmall{
 
 	public EntityTrilobite(World world) {
 		super(world);
 		this.setSize(0.7F, 0.5F);
+		minSize = 0.2F;
+		maxSize = 1;
+		adultAge = 10;
+		maxAge = 16;
         this.getNavigator().setAvoidsWater(false);
         this.getNavigator().setCanSwim(true);
 		this.dataWatcher.addObject(13, Byte.valueOf((byte)0));

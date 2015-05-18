@@ -43,7 +43,6 @@ public class EntityGalaxyFX extends EntityFX{
 		GL11.glPushMatrix();
 		GL11.glDepthMask(false);
 		GL11.glEnable(3042);
-
 		GL11.glPushMatrix();
 		GL11.glRotatef(rot, 0.00F, 0.00F, 0.50F);
 		GL11.glEnable(GL11.GL_BLEND);

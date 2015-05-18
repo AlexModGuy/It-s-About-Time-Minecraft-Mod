@@ -1,6 +1,7 @@
 package iat.client.render.entities;
 
 import iat.client.models.entities.ModelCompsognathus;
+import iat.client.render.RenderIatLiving;
 import iat.entities.mob.EntityCompsognathus;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -19,10 +20,11 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
-public class RenderCompsognathus extends RenderLiving
+public class RenderCompsognathus extends RenderIatLiving
 {
 	private static final ResourceLocation CompyTexture = new ResourceLocation("iat:textures/models/compsognathus.png");
 	private static final ResourceLocation SleepTexture = new ResourceLocation("iat:textures/models/compsognathus_Sleeping.png");
@@ -47,6 +49,7 @@ public class RenderCompsognathus extends RenderLiving
 
 		}
 		}
+		super.preRenderCallback(par1EntityLivingBase, par2);
 	}
 
 	/**
