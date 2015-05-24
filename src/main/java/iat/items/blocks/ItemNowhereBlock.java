@@ -21,6 +21,7 @@ public class ItemNowhereBlock extends ItemBlock {
 	{
 		list.add(StatCollector.translateToLocal("Nowhere"));
 		list.add(StatCollector.translateToLocal("??? - ???"));
+		list.add(StatCollector.translateToLocal("DISABLED"));
 
 	}
 }

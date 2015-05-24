@@ -1,20 +1,29 @@
 package iat;
 
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.glu.Cylinder;
-import org.lwjgl.util.glu.GLU;
-import org.lwjgl.util.glu.Sphere;
-
 import iat.client.models.armor.ModelPheromoneArmor;
-import iat.client.render.blocks.*;
-import iat.client.render.entities.*;
-import iat.client.render.items.*;
+import iat.client.render.blocks.RenderAmber;
+import iat.client.render.blocks.RenderCleaningTable;
+import iat.client.render.blocks.RenderTimeRift;
+import iat.client.render.entities.RenderCarnotaurus;
+import iat.client.render.entities.RenderCompsognathus;
+import iat.client.render.entities.RenderSpinosaurus;
+import iat.client.render.entities.RenderTrilobite;
+import iat.client.render.entities.RenderVelociraptor;
+import iat.client.render.entities.RenderCeolophysis;
+import iat.client.render.items.ItemRenderCleaningTable;
+import iat.client.render.items.ItemRenderTimeRift;
 import iat.client.render.items.ItemRendererFossil;
 import iat.core.ModBlocks;
-import iat.entities.mob.*;
-import iat.entities.tile.*;
+import iat.entities.mob.EntityCarnotaurus;
+import iat.entities.mob.EntityCoelophysis;
+import iat.entities.mob.EntityCompsognathus;
+import iat.entities.mob.EntitySpinosaurus;
+import iat.entities.mob.EntityTrilobite;
+import iat.entities.mob.EntityVelociraptor;
+import iat.entities.tile.TileEntityAmber;
+import iat.entities.tile.TileEntityCleaningTable;
+import iat.entities.tile.TileEntityTimeRift;
 import iat.enums.EnumFossilSkeleton;
-import cpw.mods.fml.client.registry.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -22,6 +31,14 @@ import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
+
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.glu.Cylinder;
+import org.lwjgl.util.glu.GLU;
+import org.lwjgl.util.glu.Sphere;
+
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ProxyClient extends ProxyCommon {
 
@@ -40,6 +57,9 @@ public class ProxyClient extends ProxyCommon {
 		RenderingRegistry.registerEntityRenderingHandler(EntityCompsognathus.class, new RenderCompsognathus());
 		RenderingRegistry.registerEntityRenderingHandler(EntityCarnotaurus.class, new RenderCarnotaurus());
 		RenderingRegistry.registerEntityRenderingHandler(EntityVelociraptor.class, new RenderVelociraptor());
+		RenderingRegistry.registerEntityRenderingHandler(EntityCoelophysis.class, new RenderCeolophysis());
+		RenderingRegistry.registerEntityRenderingHandler(EntitySpinosaurus.class, new RenderSpinosaurus());
+
 		for (int i = 0; i < EnumFossilSkeleton.values().length; i++) {
 			MinecraftForgeClient.registerItemRenderer(EnumFossilSkeleton.values()[i].fossilItem, (IItemRenderer)new ItemRendererFossil(EnumFossilSkeleton.values()[i].model, EnumFossilSkeleton.values()[i].name, false));
 			MinecraftForgeClient.registerItemRenderer(EnumFossilSkeleton.values()[i].fossilBrokenItem, (IItemRenderer)new ItemRendererFossil(EnumFossilSkeleton.values()[i].model, EnumFossilSkeleton.values()[i].name, true));

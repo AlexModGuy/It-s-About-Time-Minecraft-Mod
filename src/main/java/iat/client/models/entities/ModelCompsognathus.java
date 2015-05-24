@@ -181,12 +181,6 @@ public class ModelCompsognathus extends  MowzieModelBase {
 		if(!mob.isSitting()){
 			float scale = 1F;
 			float height = 2F * f1;
-			bob(Body, 1F * scale, height, false, f, f1);
-			bob(LeftHip, 1F * scale, height, false, f, f1);
-			bob(RightHip, 1F * scale, height, false, f, f1);
-			bob(Neck2, 1F * scale, height / 2, false, f, f1);
-			walk(Neck1, 1F * scale, 0.25F, false, 1F, 0.4F, f, f1);
-			walk(Head, 1F * scale, 0.25F, true, 1F, -0.4F, f, f1);
 			walk(LeftHip, 0.5F * scale, 0.8F, false, 0F, 0.4F, f, f1);
 			walk(LeftLeg, 0.5F * scale, 0.5F, true, 1F, 0F, f, f1);
 			walk(LeftAnkle, 0.5F * scale, 0.5F, false, 0F, 0F, f, f1);
@@ -197,19 +191,8 @@ public class ModelCompsognathus extends  MowzieModelBase {
 			walk(RightFoot, 0.5F * scale, 1.5F, false, 0.5F, 1F, f, f1);
 			faceTarget(Neck2, 2, f3, f4);
 			faceTarget(Head, 2, f3, f4);
-			MowzieModelRenderer[] rightArmParts = {this.RightArm, this.RightHand};
-			MowzieModelRenderer[] leftArmParts = {this.LeftArm, this.LeftHand};
 			MowzieModelRenderer[] tailParts = {this.Tail1, this.Tail2, this.Tail3, this.Tail4};
 			tailSwing(tailParts, 1F * scale, 0.1F * f1, 2, f);
-			chainWave(tailParts, 1F * scale, -0.05F, 2, f, f1);
-			chainWave(rightArmParts, 1F * scale, -0.3F, 4, f, f1);
-			chainWave(leftArmParts, 1F * scale, -0.3F, 4, f, f1);
-			chainWave(tailParts, 0.1F, -0.05F, 2, mob.frame, 1F);
-			walk(Neck1, 0.1F, 0.07F, false, -1F, 0F, mob.frame, 1F);
-			walk(Head, 0.1F, 0.07F, true, 0F, 0F, mob.frame, 1F);
-			walk(Body, 0.1F, 0.05F, false, 0F, 0F, mob.frame, 1F);
-			chainWave(rightArmParts, 0.1F, -0.1F, 4, mob.frame, 1F);
-			chainWave(leftArmParts, 0.1F, -0.1F, 4, mob.frame, 1F);
 		}else{
 			this.setRotateAngle(LeftFoot, 1.2747884856566583F, -0.0F, 0.0F);
 			this.setRotateAngle(RightArm, 0.9075712110370513F, -0.0F, 0.0F);

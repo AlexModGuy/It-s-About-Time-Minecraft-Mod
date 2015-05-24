@@ -77,8 +77,8 @@ public class ModItems {
 	public static void register(){
 		GameRegistry.registerItem(fossil_Shard, "fossil_Shard");
 		GameRegistry.registerItem(rockPick, "rockPick");
-		GameRegistry.registerItem(fossil_Broken, "fossil_Broken");
-		GameRegistry.registerItem(fossil, "fossil");
+		//GameRegistry.registerItem(fossil_Broken, "fossil_Broken");
+		//GameRegistry.registerItem(fossil, "fossil");
 		for (int i = 0; i < EnumFossilSkeleton.values().length; i++) {
 			GameRegistry.registerItem(EnumFossilSkeleton.values()[i].fossilBrokenItem, "fossil" + EnumFossilSkeleton.values()[i].name);
 			GameRegistry.registerItem(EnumFossilSkeleton.values()[i].fossilItem, "fossilBroken" + EnumFossilSkeleton.values()[i].name);

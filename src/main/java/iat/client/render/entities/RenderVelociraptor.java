@@ -2,7 +2,6 @@ package iat.client.render.entities;
 
 import iat.client.models.entities.ModelCarnotaurus;
 import iat.client.models.entities.ModelCompsognathus;
-import iat.client.models.entities.ModelSittingVelociraptor;
 import iat.client.models.entities.ModelVelociraptor;
 import iat.client.render.RenderIatLiving;
 import iat.entities.mob.EntityVelociraptor;

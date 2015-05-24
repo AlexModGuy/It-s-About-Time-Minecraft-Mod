@@ -1,4 +1,7 @@
 {
 "mob.iat.compsognathus.say" : {"category": "master", "sounds" : ["compsognathus1", "compsognathus2"]},
+"mob.iat.coelophysis.say" : {"category": "master", "sounds" : ["coelophysis0", "coelophysis1", "coelophysis2", "coelophysis3", "coelophysis4"]},
+"mob.iat.coelophysis.hurt" : {"category": "master", "sounds" : ["coelophysis_hurt0", "coelophysis_hurt1"]},
+"mob.iat.coelophysis.death" : {"category": "master", "sounds" : ["coelophysis_death"]},
 "world.rift" : {"category": "master", "sounds" : ["rift1", "rift2", "rift3", "rift4", "rift5"]}
 }

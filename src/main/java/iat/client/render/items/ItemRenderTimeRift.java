@@ -30,8 +30,7 @@ public class ItemRenderTimeRift implements IItemRenderer {
 		if(type == IItemRenderer.ItemRenderType.ENTITY){
 			GL11.glTranslatef(-0.5F, 0.0F, -0.5F);
 		}
-		float rot = 0;
-		rot = FMLClientHandler.instance().getClient().theWorld.getWorldTime() % 360L;
+		float rot = (float) (720.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL);
 		GL11.glPushMatrix();
 		((RenderTimeRift) this.render).renderItemAt(this.entity, 0.0D, 0.0D, 0.0D, 0.0F, rot);
 		GL11.glPopMatrix();

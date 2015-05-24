@@ -265,24 +265,18 @@ public class ModelVelociraptor extends MowzieModelBase {
 		this.body.render(f5);
 		this.lefthip.render(f5);
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		super.render(entity, f, f1, f2, f3, f4, f5);
 
 	}
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 
-		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		EntityVelociraptor mob = (EntityVelociraptor) entity;
 		setAngles();
 		if(!mob.isSitting()){
 			float scale = 1F;
 			float height = 2F * f1;
-			bob(body, 1F, height, false, f, f1);
-			bob(lefthip, 1F, height, false, f, f1);
-			bob(righthip, 1F, height, false, f, f1);
-			bob(neck4, 1F, height / 3, false, f, f1);
-			bob(neck3, 1F, height / 2, false, f, f1);
-			walk(neck2, 1F, 0.25F, false, 1F, 0.4F, f, f1);
-			walk(head, 1F, 0.25F, true, 1F, -0.4F, f, f1);
+			
 			walk(lefthip, 0.5F, 0.8F, false, 0F, 0.4F, f, f1);
 			walk(leftleg1, 0.5F, 0.5F, true, 1F, 0F, f, f1);
 			walk(leftleg2, 0.5F, 0.5F, false, 0F, 0F, f, f1);
@@ -295,19 +289,8 @@ public class ModelVelociraptor extends MowzieModelBase {
 			faceTarget(neck4, 5, f3, f4);
 			faceTarget(neck3, 7, f3, f4);
 			faceTarget(neck2, 10, f3, f4);
-			MowzieModelRenderer[] rightArmParts = {this.rightarm1, this.rightarm2};
-			MowzieModelRenderer[] leftArmParts = {this.leftarm1, this.leftarm2};
 			MowzieModelRenderer[] tailParts = {this.tail1, this.tail2, this.tail3, this.tail4, this.tail5};
 			tailSwing(tailParts, 1F, 0.1F * f1, 2, f);
-			chainWave(tailParts, 1F, -0.05F, 2, f, f1);
-			chainWave(rightArmParts, 1F, -0.3F, 4, f, f1);
-			chainWave(leftArmParts, 1F, -0.3F, 4, f, f1);
-			chainWave(tailParts, 0.1F, -0.05F, 2, mob.frame, 1F);
-			walk(neck2, 0.1F, 0.4F, false, -1F, 0F, mob.frame, 1F);
-			walk(head, 0.1F, 0.4F, true, 0F, 0F, mob.frame, 1F);
-			walk(body, 0.1F, 0.4F, false, 0F, 0F, mob.frame, 1F);
-			chainWave(rightArmParts, 0.1F, -0.4F, 4, mob.frame, 1F);
-			chainWave(leftArmParts, 0.1F, -0.4F, 4, mob.frame, 1F);
 		}else{
 	        this.setRotateAngle(rightarmfeather1, -0.11152653920243764F, 0.0F, 0.0F);
 	        this.setRotateAngle(leftleg2, -0.8651597102135892F, -0.0F, 0.0F);

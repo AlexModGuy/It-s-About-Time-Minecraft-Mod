@@ -21,6 +21,7 @@ public class ItemCleaningTable extends ItemBlock {
 	{
 		list.add(StatCollector.translateToLocal("message.iat.cleaning_table_1"));
 		list.add(StatCollector.translateToLocal("message.iat.cleaning_table_2"));
+		list.add(StatCollector.translateToLocal("WIP/DISABLED"));
 
 	}
 }

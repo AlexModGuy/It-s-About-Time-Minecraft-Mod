@@ -171,7 +171,7 @@ public class ModBlocks {
 		GameRegistry.registerBlock(plaster_Wall, "plaster_Wall");
 		GameRegistry.registerBlock(Matter_converter_off, ItemMatterConverterBlock.class, "Matter_converter_off");
 		GameRegistry.registerBlock(Matter_converter_on, ItemMatterConverterBlock.class, "Matter_converter_on");
-		GameRegistry.registerBlock(timeRift_nowhere, ItemNowhereBlock.class, "timeRift_nowhere");
+		//GameRegistry.registerBlock(timeRift_nowhere, ItemNowhereBlock.class, "timeRift_nowhere");
 		GameRegistry.registerBlock(timeRift_cretaceous, ItemCretaceousBlock.class, "timeRift_cretaceous");
 		
 		GameRegistry.registerBlock(low_Fern_Block, "low_Fern_Block");

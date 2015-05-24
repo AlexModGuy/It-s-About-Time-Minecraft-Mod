@@ -61,7 +61,7 @@ public class ItsAboutTime
 {
 
 	public static final String MODID = "itsabouttime";
-	public static final String VERSION = "Pre-Release";
+	public static final String VERSION = "Public Pre-Release";
 	public static CreativeTabs iatTab;
 	public static final int GUIMatterConverterID = 1;
 	public static final int GUICleaningTableID = 2;

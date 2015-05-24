@@ -72,12 +72,13 @@ public class RenderTimeRift extends TileEntitySpecialRenderer {
 			{
 				rot = tileentity.getWorldObj().getWorldTime() % 360L;
 			}
+			float rot2 = (float) (720.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL);
 			GL11.glPushMatrix();
 			GL11.glTranslatef(0f, 0f,0f);
 			GL11.glTranslated((float)x + 0.5F, (float)y + 1.5F, (float)z + 0.5F);
 			GL11.glRotatef(180, 0F, 0F, 1F);
 			GL11.glPushMatrix();
-			GL11.glRotatef(-1 * rot, 0.00F, 0.50F, 0.00F);
+			GL11.glRotatef(rot2, 0.00F, 0.50F, 0.00F);
 			GL11.glTranslated(0, 2, 2);
 			doDragonEffect(120);
 			GL11.glPopMatrix();

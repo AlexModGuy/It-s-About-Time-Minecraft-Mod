@@ -18,7 +18,7 @@ public class CreativeTabsIat extends CreativeTabs
 	}
 	@Override
 	public ItemStack getIconItemStack(){
-		return new ItemStack(ModBlocks.timeRift_nowhere);
+		return new ItemStack(ModBlocks.timeRift_cretaceous);
 	}
 	@Override
 	public Item getTabIconItem() {

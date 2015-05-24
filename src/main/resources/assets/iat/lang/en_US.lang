@@ -20,6 +20,9 @@ ENTITIES
 entity.iat.trilobite.name=Trilobite
 entity.iat.compsognathus.name=Compsognathus
 entity.iat.carnotaurus.name=Carnotaurus
+entity.iat.velociraptor.name=Velociraptor
+entity.iat.spinosaurus.name=Spinosaurus
+entity.iat.coelophysis.name=Coelophysis
 BLOCKS
 tile.iat.fossil.name=Fossil Ore
 tile.iat.fossil_Plaster.name=Plaster Wrapped Fossil

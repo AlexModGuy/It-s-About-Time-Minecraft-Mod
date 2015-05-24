@@ -30,6 +30,7 @@ public class ConfigOptions
     public static boolean disableTroodon;
     public static boolean disableTriceratops;
 	public static boolean disableVelociraptor;
+	public static boolean disableSpinosaurus;
 
 
     public static void init(Configuration config)
@@ -60,6 +61,7 @@ public class ConfigOptions
     	disableTroodon = config.get("Disable Mobs(use with other mods with duplicate animals)", "Disable Troodon", false).getBoolean(false);
     	disableTriceratops = config.get("Disable Mobs(use with other mods with duplicate animals)", "Disable Triceratops", false).getBoolean(false);
     	disableVelociraptor = config.get("Disable Mobs(use with other mods with duplicate animals)", "Disable Velociraptor", false).getBoolean(false);
+    	disableSpinosaurus = config.get("Disable Mobs(use with other mods with duplicate animals)", "Disable Spinosaurus", false).getBoolean(false);
 
     }
 
