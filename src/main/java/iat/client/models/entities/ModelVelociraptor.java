@@ -285,10 +285,8 @@ public class ModelVelociraptor extends MowzieModelBase {
 			walk(rightleg, 0.5F, 0.5F, false, 1F, 0F, f, f1);
 			walk(leftleg2, 0.5F, 0.5F, true, 0F, 0F, f, f1);
 			walk(rightfoot, 0.5F, 1.5F, false, 0.5F, 1F, f, f1);
-			faceTarget(head, 3, f3, f4);
-			faceTarget(neck4, 5, f3, f4);
-			faceTarget(neck3, 7, f3, f4);
-			faceTarget(neck2, 10, f3, f4);
+			faceTarget(head, 4, f3, f4);
+			faceTarget(neck4, 8, f3, f4);
 			MowzieModelRenderer[] tailParts = {this.tail1, this.tail2, this.tail3, this.tail4, this.tail5};
 			tailSwing(tailParts, 1F, 0.1F * f1, 2, f);
 		}else{
