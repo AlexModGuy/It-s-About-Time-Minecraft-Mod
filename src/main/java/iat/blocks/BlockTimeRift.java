@@ -5,6 +5,7 @@ import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import iat.ItsAboutTime;
 import iat.core.ModDimensions;
 import iat.entities.particles.EntityGalaxyFX;
 //import iat.entities.particles.EntityGlowingFX;
@@ -89,9 +90,8 @@ public class BlockTimeRift extends BlockContainer {
 							break;
 						}
 
-						EntityFX particle1 = new EntityTimeRiftFX(world, (double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D, (double)((float)(l - x) + rand.nextFloat()) - 0.5D, (double)((float)(j1 - y) - rand.nextFloat() - 1.0F), (double)((float)(i1 - z) + rand.nextFloat()) - 0.5D);
-						Minecraft.getMinecraft().effectRenderer.addEffect(particle1); 
-
+				
+						ItsAboutTime.proxy.addTimeRiftParticle(world, (double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D, (double)((float)(l - x) + rand.nextFloat()) - 0.5D, (double)((float)(j1 - y) - rand.nextFloat() - 1.0F), (double)((float)(i1 - z) + rand.nextFloat()) - 0.5D);
 					}
 				}
 
