@@ -11,23 +11,7 @@ import iat.event.EventLiquidSpaceTime;
 import iat.misc.CreativeTabsIat;
 import iat.misc.GuiHandler;
 import iat.world.GenManager;
-
 import org.lwjgl.input.Keyboard;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
