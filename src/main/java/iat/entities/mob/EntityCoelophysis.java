@@ -68,7 +68,7 @@ public class EntityCoelophysis extends EntityIatMob implements IAnimatedEntity
    
     protected String getLivingSound()
     {
-        return "iat:mob.iat.coelophysis.say";
+        return "iat:mob.iat.ceolophysis.say";
     }
 
     /**
@@ -76,7 +76,7 @@ public class EntityCoelophysis extends EntityIatMob implements IAnimatedEntity
      */
     protected String getHurtSound()
     {
-        return "iat:mob.iat.coelophysis.hurt";
+        return "iat:mob.iat.ceolophysis.hurt";
     }
 
     /**
@@ -84,7 +84,7 @@ public class EntityCoelophysis extends EntityIatMob implements IAnimatedEntity
      */
     protected String getDeathSound()
     {
-        return "iat:mob.iat.coelophysis.death";
+        return "iat:mob.iat.ceolophysis.death";
     }
 
     public EntityCoelophysis createChild(EntityAgeable p_90011_1_)

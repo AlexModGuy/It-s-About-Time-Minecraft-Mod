@@ -20,7 +20,7 @@ import net.minecraft.util.ResourceLocation;
 
 
 public class RenderCleaningTable extends TileEntitySpecialRenderer {
-	public static final ResourceLocation texture = new ResourceLocation("iat:textures/blocks/models/cleaner_Table_On.png");
+	public static final ResourceLocation texture = new ResourceLocation("iat:textures/models/texture.png");
 
 	private ModelCleaningTable model;
 
@@ -37,7 +37,7 @@ public class RenderCleaningTable extends TileEntitySpecialRenderer {
 		GL11.glRotatef(180, 0F, 0F, 1F);
 		GL11.glPushMatrix();
 		this.bindTexture(texture);
-		this.model.render(0.0625F);
+		this.model.render(null, 0, 0, 0, 0, 0, 0.0625F);
 		GL11.glPopMatrix();
 		GL11.glPopMatrix();
 

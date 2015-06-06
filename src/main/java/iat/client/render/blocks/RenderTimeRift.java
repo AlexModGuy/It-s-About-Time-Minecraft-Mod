@@ -15,6 +15,7 @@ public class RenderTimeRift extends TileEntitySpecialRenderer {
 	public RenderTimeRift(){
 	}
 	private void doDragonEffect(float rot){
+		GL11.glPushMatrix();
         Tessellator tessellator = Tessellator.instance;
         float f1 = ((float)rot) / 200.0F;
         float f2 = 0.0F;
@@ -63,6 +64,7 @@ public class RenderTimeRift extends TileEntitySpecialRenderer {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glEnable(GL11.GL_ALPHA_TEST);
+        GL11.glPopMatrix();
 	}
 
 	@Override

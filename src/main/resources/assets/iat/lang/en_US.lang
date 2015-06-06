@@ -22,7 +22,7 @@ entity.iat.compsognathus.name=Compsognathus
 entity.iat.carnotaurus.name=Carnotaurus
 entity.iat.velociraptor.name=Velociraptor
 entity.iat.spinosaurus.name=Spinosaurus
-entity.iat.coelophysis.name=Coelophysis
+entity.iat.coelophysis.name=Ceolophysis
 BLOCKS
 tile.iat.fossil.name=Fossil Ore
 tile.iat.fossil_Plaster.name=Plaster Wrapped Fossil
@@ -33,6 +33,17 @@ tile.iat.matter_converter.name=Time Crystal Infuser
 tile.iat.timeRift.name=Rift in Time
 tile.iat.mud.name=Mud
 tile.iat.dried_Mud.name=Dried Mud
+
+tile.iat.log.Ginko.name=Ginko Wood
+tile.iat.log.Monkeypuzzle.name=Monkey Puzzle Wood
+tile.iat.log.Podocarpus.name=Podocarpus Wood
+tile.iat.log.Kauri.name=Kauri Wood
+tile.iat.leaves.Ginko.name=Ginko Leaves
+tile.iat.leaves.Monkeypuzzle.name=Monkey Puzzle Leaves
+tile.iat.leaves.Podocarpus.name=Podocarpus Leaves
+tile.iat.leaves.Kauri.name=Kauri Leaves
+
+tile.iat.ginkoNut.name=Ginko Fruit
 tile.iat.low_Fern.name=Ground Fern Block
 tile.iat.horsetail.name=Horsetail Sprout
 tile.iat.grid.name=Grid
@@ -51,6 +62,7 @@ item.iat.time_Axe.name=Axe of Time
 item.iat.time_Sword.name=Sword of Time
 item.iat.time_Hoe.name=Hoe of Time
 item.iat.pheromoneCanester.name=Pheromone Canister
+item.iat.ginkoNut.name=Ginko Fruits
 ACHIEVEMENTS
 achievement.plaster=Fun To Play With, Not To Eat!
 achievement.plaster.desc=Craft Plaster.

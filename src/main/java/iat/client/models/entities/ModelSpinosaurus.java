@@ -335,8 +335,7 @@ public class ModelSpinosaurus extends MowzieModelBase {
 		walk(RightLeg, 0.5F * scale, 0.5F, false, 1F, 0F, f, f1);
 		walk(RightAnkle, 0.5F * scale, 0.5F, true, 0F, 0F, f, f1);
 		walk(RightFoot, 0.5F * scale, 1.5F, false, 0.5F, 1F, f, f1);
-		faceTarget(Neck3, 8, f3, f4);
-		faceTarget(Head1, 4, f3, f4);
+		faceTarget(Head1, 2, f3, f4);
 		MowzieModelRenderer[] tailParts = {this.Tail1, this.Tail2, this.Tail3, this.Tail4, this.Tail5};
 		tailSwing(tailParts, 1F * scale, 0.1F * f1, 2, f);
 	}

@@ -5,6 +5,7 @@ import iat.ItsAboutTime;
 import iat.items.ItemAmber;
 import iat.items.ItemFossil;
 import iat.items.ItemFossilBroken;
+import iat.items.ItemGinkoNut;
 import iat.items.ItemModAxe;
 import iat.items.ItemModPickaxe;
 import iat.items.ItemModSpade;
@@ -19,9 +20,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemBucket;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.potion.Potion;
 import iat.enums.EnumFossilSkeleton;
 
 public class ModItems {
@@ -40,6 +43,7 @@ public class ModItems {
 	public static Item time_Hoe;
 	public static Item pheromoneChest;
 	public static Item bucket_Time;
+	public static Item ginkoNuts;
 	public static ToolMaterial timeToolMaterial;
 	public static ArmorMaterial pheromoneArmor;
 
@@ -72,7 +76,7 @@ public class ModItems {
 		time_Hoe = new ItemHoe(timeToolMaterial).setUnlocalizedName("iat.time_Hoe").setTextureName("iat:time_Hoe").setCreativeTab(ItsAboutTime.iatTab);
 		pheromoneChest = new ItemPheromoneArmor(pheromoneArmor, 0, 1).setUnlocalizedName("iat.pheromoneCanester").setTextureName("iat:pheromoneCanester").setCreativeTab(ItsAboutTime.iatTab);
 		bucket_Time = new ItemBucket(ModBlocks.fluidTimeBlock).setUnlocalizedName("iat.bucket_Time").setTextureName("iat:bucket_Time").setContainerItem(Items.bucket);
-
+		ginkoNuts = new ItemFood(2, 0.2F, false).setPotionEffect(Potion.hunger.id, 30, 0, 0.3F).setUnlocalizedName("iat.ginkoNut").setTextureName("iat:ginko_nut").setCreativeTab(ItsAboutTime.iatTab);
 	}
 	public static void register(){
 		GameRegistry.registerItem(fossil_Shard, "fossil_Shard");
@@ -93,6 +97,7 @@ public class ModItems {
 		GameRegistry.registerItem(time_Hoe, "time_Hoe");
 		GameRegistry.registerItem(pheromoneChest, "pheromoneChest");
 		GameRegistry.registerItem(bucket_Time, "bucket_Time");
+		GameRegistry.registerItem(ginkoNuts, "ginkoNuts");
 
 	}
 }

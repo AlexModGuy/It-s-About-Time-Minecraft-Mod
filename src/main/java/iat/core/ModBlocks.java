@@ -6,6 +6,7 @@ import iat.blocks.BlockAmber;
 import iat.blocks.BlockBasic;
 import iat.blocks.BlockCleaningTable;
 import iat.blocks.BlockFossil;
+import iat.blocks.BlockGinkoNut;
 import iat.blocks.BlockGrid;
 import iat.blocks.BlockHorseTail;
 import iat.blocks.BlockMatterConverter;
@@ -14,13 +15,17 @@ import iat.blocks.BlockPlaster;
 import iat.blocks.BlockPlasterFossil;
 import iat.blocks.BlockPlasterWall;
 import iat.blocks.BlockLowFern;
-import iat.blocks.BlockPrehistoricWood_1;
+import iat.blocks.BlockPrehistoricLeaves;
+import iat.blocks.BlockPrehistoricSapling;
+import iat.blocks.BlockPrehistoricWood;
 import iat.blocks.BlockTimeFluid;
 import iat.blocks.BlockTimeRift;
 import iat.blocks.fluid.FluidTime;
 import iat.entities.tile.TileEntityCleaningTable;
 import iat.entities.tile.TileEntityMatterConverter;
 import iat.entities.tile.TileEntityTimeRift;
+import iat.enums.EnumFossilSkeleton;
+import iat.enums.EnumPrehistoricTrees;
 import iat.items.blocks.ItemCambrianBlock;
 import iat.items.blocks.ItemCarboniferousBlock;
 import iat.items.blocks.ItemCleaningTable;
@@ -84,9 +89,10 @@ public class ModBlocks {
 	public static Block dried_Mud;
 	public static Block low_Fern_Block;
 	public static Block horsetail;
-	public static Block pre_Log_1;
 	public static Block grid;
 	public static Block fluidTimeBlock;
+	public static Block ginkoNut;
+
 	public static Fluid fluidTime;
 	public static Material materialFluidTime;
 
@@ -132,13 +138,19 @@ public class ModBlocks {
 		dried_Mud = new BlockBasic(Material.ground, "pickaxe", 1, 0.5F, 3.5F).setBlockName("iat.dried_Mud").setBlockTextureName("iat:dried_Mud").setCreativeTab(ItsAboutTime.iatTab);
 		low_Fern_Block = new BlockLowFern().setBlockName("iat.low_Fern").setBlockTextureName("iat:low_Fern").setCreativeTab(ItsAboutTime.iatTab).setHardness(0.6F).setStepSound(Block.soundTypeGrass);
 		horsetail = new BlockHorseTail(Material.plants).setBlockName("iat.horsetail").setBlockTextureName("iat:horsetail").setCreativeTab(ItsAboutTime.iatTab).setHardness(0.3F).setStepSound(Block.soundTypeGrass);
-		//pre_Log_1 = new BlockPrehistoricWood_1().setBlockName("iat.log").setBlockTextureName("iat:log").setCreativeTab(ItsAboutTime.iatTab).setHardness(0.3F).setStepSound(Block.soundTypeGrass);
+		for (int i = 0; i < EnumPrehistoricTrees.values().length; i++) {
+			EnumPrehistoricTrees.values()[i].logBlock = new BlockPrehistoricWood("iat:log_" + EnumPrehistoricTrees.values()[i].name()).setBlockName("iat.log." + EnumPrehistoricTrees.values()[i].name()).setCreativeTab(ItsAboutTime.iatTab).setStepSound(Block.soundTypeWood);
+			EnumPrehistoricTrees.values()[i].leavesBlock = new BlockPrehistoricLeaves("iat:leaves_" + EnumPrehistoricTrees.values()[i].name()).setBlockName("iat.leaves." + EnumPrehistoricTrees.values()[i].name()).setCreativeTab(ItsAboutTime.iatTab).setStepSound(Block.soundTypeGrass);
+			EnumPrehistoricTrees.values()[i].saplingBlock = new BlockPrehistoricSapling(EnumPrehistoricTrees.values()[i].tree, "iat:sapling_" + EnumPrehistoricTrees.values()[i].name()).setBlockName("iat.sapling." + EnumPrehistoricTrees.values()[i].name()).setCreativeTab(ItsAboutTime.iatTab).setStepSound(Block.soundTypeGrass);
+		}
+		ginkoNut = new BlockGinkoNut().setHardness(0.3F).setBlockName("iat.ginkoNut");
 		grid = new BlockGrid(Material.rock).setBlockUnbreakable().setBlockTextureName("iat:grid").setBlockName("iat.grid").setCreativeTab(ItsAboutTime.iatTab);
 		fluidTime = new FluidTime("fluidTime").setBlock(fluidTimeBlock).setUnlocalizedName("fluidTime");
 		FluidRegistry.registerFluid(fluidTime);
 		materialFluidTime = new MaterialLiquid(MapColor.limeColor);
 		fluidTimeBlock=new BlockTimeFluid(fluidTime, materialFluidTime).setBlockName("iat.fluid_Time");
 	}
+
 	public static void register(){
 		GameRegistry.registerBlock(fossil_Ore_Cambrian, ItemCambrianBlock.class, "fossil_Ore_Cambrian");
 		GameRegistry.registerBlock(fossil_Ore_Ordovician, ItemOrdovicianBlock.class, "fossil_Ore_Ordovician");
@@ -173,7 +185,12 @@ public class ModBlocks {
 		GameRegistry.registerBlock(Matter_converter_on, ItemMatterConverterBlock.class, "Matter_converter_on");
 		//GameRegistry.registerBlock(timeRift_nowhere, ItemNowhereBlock.class, "timeRift_nowhere");
 		GameRegistry.registerBlock(timeRift_cretaceous, ItemCretaceousBlock.class, "timeRift_cretaceous");
-		
+		for (int i = 0; i < EnumPrehistoricTrees.values().length; i++) {
+			GameRegistry.registerBlock(EnumPrehistoricTrees.values()[i].logBlock, "log_" + EnumPrehistoricTrees.values()[i].name());
+			GameRegistry.registerBlock(EnumPrehistoricTrees.values()[i].leavesBlock, "leaves_" + EnumPrehistoricTrees.values()[i].name());
+			GameRegistry.registerBlock(EnumPrehistoricTrees.values()[i].saplingBlock, "sapling_" + EnumPrehistoricTrees.values()[i].name());
+		}
+	//	GameRegistry.registerBlock(ginkoNut, "ginkoNut");
 		GameRegistry.registerBlock(low_Fern_Block, "low_Fern_Block");
 		GameRegistry.registerBlock(mud, "mud");
 		GameRegistry.registerBlock(dried_Mud, "dried_Mud");
@@ -181,7 +198,7 @@ public class ModBlocks {
 		GameRegistry.registerBlock(horsetail, "horsetail");
 		GameRegistry.registerBlock(grid, "grid");
 		GameRegistry.registerBlock(fluidTimeBlock, "fluidTimeBlock");
-		
+
 		GameRegistry.registerTileEntity(TileEntityTimeRift.class, "TileEntityTimeRift");
 		GameRegistry.registerTileEntity(TileEntityMatterConverter.class, "TileEntityMatterConverter");
 		GameRegistry.registerTileEntity(TileEntityCleaningTable.class, "TileEntityCleaningTable");
