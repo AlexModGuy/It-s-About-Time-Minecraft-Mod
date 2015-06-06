@@ -1,6 +1,7 @@
 package iat;
 
 import iat.client.models.armor.ModelPheromoneArmor;
+import iat.client.models.entities.ModelCompsognathus;
 import iat.client.render.blocks.RenderAmber;
 import iat.client.render.blocks.RenderCleaningTable;
 import iat.client.render.blocks.RenderTimeRift;
@@ -20,15 +21,18 @@ import iat.entities.mob.EntityCompsognathus;
 import iat.entities.mob.EntitySpinosaurus;
 import iat.entities.mob.EntityTrilobite;
 import iat.entities.mob.EntityVelociraptor;
+import iat.entities.particles.EntityTimeRiftFX;
 import iat.entities.tile.TileEntityAmber;
 import iat.entities.tile.TileEntityCleaningTable;
 import iat.entities.tile.TileEntityTimeRift;
 import iat.enums.EnumFossilSkeleton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 
@@ -61,8 +65,8 @@ public class ProxyClient extends ProxyCommon {
 		RenderingRegistry.registerEntityRenderingHandler(EntitySpinosaurus.class, new RenderSpinosaurus());
 
 		for (int i = 0; i < EnumFossilSkeleton.values().length; i++) {
-			MinecraftForgeClient.registerItemRenderer(EnumFossilSkeleton.values()[i].fossilItem, (IItemRenderer)new ItemRendererFossil(EnumFossilSkeleton.values()[i].model, EnumFossilSkeleton.values()[i].name, false));
-			MinecraftForgeClient.registerItemRenderer(EnumFossilSkeleton.values()[i].fossilBrokenItem, (IItemRenderer)new ItemRendererFossil(EnumFossilSkeleton.values()[i].model, EnumFossilSkeleton.values()[i].name, true));
+			MinecraftForgeClient.registerItemRenderer(EnumFossilSkeleton.values()[i].fossilItem, (IItemRenderer)new ItemRendererFossil(new ModelCompsognathus(), EnumFossilSkeleton.values()[i].name, false));
+			MinecraftForgeClient.registerItemRenderer(EnumFossilSkeleton.values()[i].fossilBrokenItem, (IItemRenderer)new ItemRendererFossil(new ModelCompsognathus(), EnumFossilSkeleton.values()[i].name, true));
 		}
 		TileEntitySpecialRenderer render = new RenderTimeRift();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTimeRift.class, render);
@@ -129,7 +133,10 @@ public class ProxyClient extends ProxyCommon {
 		cylinder.draw(0.49F, 0.49F, 10, 10, 2);
 		GL11.glEndList();	
 	}
-
+	public void addTimeRiftParticle(World world, double d, double e, double f, double g, double h, double i) {
+		EntityFX particle1 = new EntityTimeRiftFX(world, d, e, f, g, h, i);
+		Minecraft.getMinecraft().effectRenderer.addEffect(particle1); 
+	}
 }
 
 
