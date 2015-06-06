@@ -12,7 +12,6 @@ import iat.misc.CreativeTabsIat;
 import iat.misc.GuiHandler;
 import iat.world.GenManager;
 import org.lwjgl.input.Keyboard;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -89,7 +88,7 @@ public class ItsAboutTime
 		ModAchievements.init();
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		proxy.registerRenderStuff();	
-	    MinecraftForge.EVENT_BUS.register(new EventLiquidSpaceTime(Minecraft.getMinecraft()));
+	   // MinecraftForge.EVENT_BUS.register(new EventLiquidSpaceTime(Minecraft.getMinecraft()));
     	GameRegistry.registerWorldGenerator(new GenManager(), 100);
 
 	}
